@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <head>
+    <title>Did They Win?</title>
+  </head>
+  <body>
+    <form action="/" method="POST" name="check">
+      <input type="text" name="team" value="" />
+      <input type="submit" name="submit" value="Did they win?" />
+    </form>
+    <p>
+    <% if !@result.nil? && @result.has_key?(:team_name) %>
+      <h1><%= @result[:team_name] %> vs. <%= @result[:team_name_opponent] %></h1>
+      <p>
+        <h2>Final Score</h2>
+        <%= @result[:points_scored] %> to <%= @result[:points_scored_opponent] %>
+      </p>
+      <p>
+        <h2>Result</h2>
+        A <%= @result[:outcome] %> for the <%= @result[:team_name] %> by <%= @result[:points_difference] %> points
+      </p>
+    <% elsif !@result.nil? && !@result.has_key?(:team_name) %>
+      <%= @result[:no_game] %>
+    <% end %>
+    </p>
+  </body>
+</html>
