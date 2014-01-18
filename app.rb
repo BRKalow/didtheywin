@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require_relative 'lib/did_they_win'
 
-class App < Sinatra::Base
+class DidTheyWinApp < Sinatra::Base
   helpers DidTheyWin
 
   get '/' do
@@ -9,10 +9,13 @@ class App < Sinatra::Base
   end
 
   post '/' do
+
     @result = DidTheyWin::last_night?(params[:team])
 
     erb :index
   end
 
-  run!
+  unless settings.environment == :testing
+    run!
+  end
 end
