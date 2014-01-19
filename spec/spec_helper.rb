@@ -1,6 +1,7 @@
-ENV['RACK_ENV'] = 'testing'
-
 require 'rack/test'
+require 'sinatra'
+
+set :environment, :test
 
 require File.expand_path '../../app.rb', __FILE__
 

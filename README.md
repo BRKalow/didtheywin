@@ -1,15 +1,33 @@
 DidTheyWin?
 ==========
 
-A one page Sinatra app to see if an NBA won last night.  
-Created by Bryce Kalow, http://brycekalow.name  
+A one page Sinatra app to see if an NBA team won last night.
+Created by Bryce Kalow, http://brycekalow.name
 Version 1.0
 
 Usage
 -----
 
-From the root of the app:  
-`ruby app.rb`
+First create a file named `app.yml` in `/config` containing:
+
+```
+keys:
+  xmlstats: [YOUR XMLSTATS KEY HERE]
+```
+
+Next, run:
+`bundle install`
+
+Finally:
+`bundle exec shotgun`
+Or:
+`rackup`
+
+Testing
+-------
+
+To run the test file, from the root of the app folder:
+`rspec spec/app_spec.rb`
 
 Credits
 -------

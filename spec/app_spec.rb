@@ -1,8 +1,8 @@
 require File.expand_path '../spec_helper.rb', __FILE__
 
-describe DidTheyWinApp do
+describe 'DidTheyWin App' do
   def app
-    @app ||= DidTheyWinApp
+    @app ||= Sinatra::Application
   end
 
   describe "Get '/'" do

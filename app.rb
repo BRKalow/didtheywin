@@ -1,21 +1,16 @@
-require 'sinatra/base'
+set :views, File.dirname(__FILE__) + '/views'
+
 require_relative 'lib/did_they_win'
 
-class DidTheyWinApp < Sinatra::Base
-  helpers DidTheyWin
+before do
+  headers 'Content-Type' => 'text/html; charset=utf-8'
+end
 
-  get '/' do
-    erb :index
-  end
+get '/' do
+  erb :index
+end
 
-  post '/' do
-
-    @result = DidTheyWin::last_night?(params[:team])
-
-    erb :index
-  end
-
-  unless settings.environment == :testing
-    run!
-  end
+post '/' do
+  @result = DidTheyWin::last_night?(params[:team])
+  erb :index
 end
