@@ -45,11 +45,11 @@ module DidTheyWin
         data = result.body
       else
         puts "Error retreiving data: #{result.code} #{result.message}"
-        exit 1
+        return []
       end
     end
 
-    event = JSON.parse(data)
+    return JSON.parse(data)
   end
 
   def self.last_night?(team)
