@@ -29,6 +29,20 @@ module DidTheyWin
     return uri
   end
 
+  def self.parse_request(request)
+    parts = request.split ' '
+    result = Hash.new
+
+    if parts.include? 'leader' 
+        result[:category] = 'leaders'
+    end
+    if parts.include? 'assist'
+        result[:method] = 'assists_per_game'
+    end
+    
+    return result[:category]+'/'+result[:method]+'.json?limit=1'
+  end
+    
   def self.grab_data(uri)
     data = nil
 
