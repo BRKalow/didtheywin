@@ -30,16 +30,21 @@ module DidTheyWin
   end
 
   def self.parse_request(request)
+    leader_words = ['leader']
+    assist_words = ['assists', 'assist', 'apg']
+    point_words  = ['points', 'point', 'ppg']
     parts = request.split ' '
     result = Hash.new
 
-    if parts.include? 'leader' 
+    if leader_words.any? { |w| parts.include? w }
         result[:category] = 'leaders'
     end
-    if parts.include? 'assist'
+    if assist_words.any? { |w| parts.include? w }
         result[:method] = 'assists_per_game'
     end
-    
+    if point_words.any? { |w| parts.include? w }
+        result[:method] = 'points_per_game'
+    end
     return result[:category]+'/'+result[:method]+'.json?limit=1'
   end
     
