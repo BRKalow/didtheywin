@@ -31,23 +31,31 @@ module DidTheyWin
 
   def self.parse_request(request)
     leader_words = ['leader']
-    assist_words = ['assists', 'assist', 'apg']
-    point_words  = ['points', 'point', 'ppg']
     parts = request.split ' '
     result = Hash.new
 
     if leader_words.any? { |w| parts.include? w }
         result[:category] = 'leaders'
     end
-    if assist_words.any? { |w| parts.include? w }
+    if request_contains_assist_word? parts
         result[:method] = 'assists_per_game'
     end
-    if point_words.any? { |w| parts.include? w }
+    if request_contains_point_word? parts
         result[:method] = 'points_per_game'
     end
     return result[:category]+'/'+result[:method]+'.json?limit=1'
   end
+
+  def self.request_contains_assist_word?(request)
+     words = ['assists', 'assist', 'apg']
+    return words.any? { |w| request.include? w }
+  end
     
+  def self.request_contains_point_word?(request)
+    words  = ['points', 'point', 'ppg']
+    return words.any? { |w| request.include? w }
+  end
+
   def self.grab_data(uri)
     data = nil
 
