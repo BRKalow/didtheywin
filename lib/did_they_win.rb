@@ -36,14 +36,19 @@ module DidTheyWin
 
     if leader_words.any? { |w| parts.include? w }
         result[:category] = 'leaders'
-    end
-    if request_contains_assist_word? parts
-        result[:method] = 'assists_per_game'
-    end
-    if request_contains_point_word? parts
-        result[:method] = 'points_per_game'
+        if request_contains_assist_word? parts
+            result[:method] = 'assists_per_game'
+        end
+        if request_contains_point_word? parts
+            result[:method] = 'points_per_game'
+        end
     end
     return result[:category]+'/'+result[:method]+'.json?limit=1'
+  end
+
+  def self.request_contains_leader_word?(request)
+      words = ['leaders']
+      return words.any? { |w| request.include? w }
   end
 
   def self.request_contains_assist_word?(request)
