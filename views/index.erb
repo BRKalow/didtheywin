@@ -9,7 +9,7 @@
     </form>
     <p>
     <% if !@result.nil? && @result.has_key?(:team_name) %>
-      <h1><%= @result[:team_name] %> vs. <%= @result[:team_name_opponent] %></h1>
+      <h1><%= @result[:team_name] %> vs. <%= @result[:team_name_opponent] %> (<%= @result[:date] %>)</h1>
       <p>
         <h2>Final Score</h2>
         <%= @result[:points_scored] %> to <%= @result[:points_scored_opponent] %>

@@ -1,7 +1,7 @@
 DidTheyWin?
 ==========
 
-A one page Sinatra app to see if an NBA team won last night.
+A one page Sinatra app to see if an NBA team won their last game.
 Created by Bryce Kalow, http://brycekalow.name
 Version 1.0
 

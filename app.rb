@@ -11,6 +11,6 @@ get '/' do
 end
 
 post '/' do
-  @result = DidTheyWin::last_night?(params[:team])
+  @result = DidTheyWin::team_win?(params[:team])
   erb :index
 end
