@@ -17,32 +17,46 @@
       -webkit-animation-duration: 1s;
     }
     form.check-form {
-      -webkit-animation-delay: 3s;
+      -webkit-animation-delay: 1.5s;
     }
     .result {
-      background: rgba(255,255,255,0.7);
-      padding: 20px;
+      background: white;
+      padding: 0px 20px;
       margin-top: 20px;
     }
-    .result h2 > small {
+    .result .teams {
+      border-bottom: 1px solid lightgrey;
+    }
+    .result .left-team {
+      border-right: 1px solid lightgrey;
+    }
+    .result h3 > .logo {
+      height: 60px;
+    }
+    .result h3 > small {
       color: #333;
+    }
+    .result .points {
+      font-size: 2em;
+      padding: 20px 0px;
+      display: block;
     }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-4">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
               <h1 class="title <% if @result.nil? %>animated bounceInLeft<% end %>">
                 Did They Win? <br/>
-                <small>Missed the game? no problem, check the result here.</small>
+                <small>Missed the game? No problem! Check the result here.</small>
               </h1>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
               <form action="/" method="POST" name="check" class="form-inline check-form <% if @result.nil? %>animated pulse<% end %>">
                 <input type="text" name="team" value="" class="form-control input-lg" />
                 <input type="submit" name="submit" value="Check" class="btn btn-primary btn-lg" />
@@ -50,18 +64,39 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-md-8">
             <% if !@result.nil? && @result.has_key?(:team_name) %>
             <div class="result">
-              <h2><%= @result[:team_name] %> vs. <%= @result[:team_name_opponent] %> <small>(<%= @result[:date] %>)</small></h2>
-              <p>
-                <h3>Final Score</h3>
-                <%= @result[:points_scored] %> to <%= @result[:points_scored_opponent] %>
-              </p>
-              <p>
-                <h3>Result</h3>
-                A <%= @result[:outcome] %> for the <%= @result[:team_name] %> by <%= @result[:points_difference] %> points
-              </p>
+              <div class="row teams">
+                <div class="col-md-6 text-center left-team">
+                  <h3>
+                    <img class="logo" src="/images/logos/<%= @result[:team_id] %>.gif" alt="<%= @result[:team_name] %>" /><%= @result[:team_name] %>
+                  </h3>
+                </div>
+                <div class="col-md-6 text-center">
+                  <h3>
+                  <img class="logo" src="/images/logos/<%= @result[:team_id_opponent] %>.gif" alt="<%= @result[:team_name_opponent] %>" /><%= @result[:team_name_opponent] %>
+                  </h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h3><%= @result[:date] %></h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 text-center">
+                  <span class="points"><%= @result[:points_scored] %></span>
+                </div>
+                <div class="col-md-6 text-center">
+                  <span class="points"><%= @result[:points_scored_opponent] %></span>
+                </div>
+              </div>
+              <!--<div class="row">
+                <div class="col-md-12 text-center">
+                  It looks like a <%= @result[:outcome] %> for the <%= @result[:team_name] %> by <%= @result[:points_difference] %> points.
+                </div>
+              </div>-->
             </div>
             <% elsif !@result.nil? && !@result.has_key?(:team_name) %>
               <%= @result[:no_game] %>

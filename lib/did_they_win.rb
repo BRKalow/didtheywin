@@ -55,7 +55,9 @@ module DidTheyWin
       result[:no_game]                = "It looks like something went wrong."
     else
       result[:team_name]              = event[0]['team']['full_name']
+      result[:team_id]                = event[0]['team']['team_id']
       result[:team_name_opponent]     = event[0]['opponent']['full_name']
+      result[:team_id_opponent]       = event[0]['opponent']['team_id']
       result[:points_scored]          = event[0]['team_points_scored']
       result[:points_scored_opponent] = event[0]['opponent_points_scored']
       result[:points_difference]      = (result[:points_scored] - result[:points_scored_opponent]).abs
