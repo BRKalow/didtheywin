@@ -11,6 +11,6 @@ get '/' do
 end
 
 post '/' do
-  @result = DidTheyWin::team_win?(params[:team])
-  erb :index
+  @result = DidTheyWin::team_win?(params[:team], true)
+  return @result
 end

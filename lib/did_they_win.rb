@@ -47,7 +47,7 @@ module DidTheyWin
     return JSON.parse(data)
   end
 
-  def self.team_win?(team)
+  def self.team_win?(team, json=false)
     event = self.grab_data(self.construct_results_uri(team))
     result = {}
 
@@ -65,7 +65,11 @@ module DidTheyWin
       result[:date]                   = Time.parse(event[0]['event_start_date_time']).strftime('%B %d, %Y')
     end
 
-    return result
+    if json
+      return result.to_json
+    else
+      return result
+    end
   end
 
   # Unused below; for new features or potential new app #
