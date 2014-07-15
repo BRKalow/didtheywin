@@ -15,7 +15,7 @@ set :pty, true
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-set :unicorn_config_path, "#{fetch(:deploy_to)}/unicorn.rb"
+set :unicorn_config_path, "#{fetch(:deploy_to)}/current/unicorn.rb"
 set :unicorn_pid, "#{fetch(:deploy_to)}/pids/unicorn.pid"
 
 namespace :deploy do
