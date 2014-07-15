@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 
 gem 'sinatra'
-gem 'capistrano'
+gem 'capistrano', '~> 3.0'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
 gem 'unicorn'
 
 group :development do
