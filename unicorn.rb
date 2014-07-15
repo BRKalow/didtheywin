@@ -1,4 +1,4 @@
-working_directory "/var/www/didtheywin"
+working_directory "/var/www/didtheywin/current"
 
 pid "/var/www/didtheywin/pids/unicorn.pid"
 
