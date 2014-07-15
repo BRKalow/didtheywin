@@ -25,7 +25,7 @@ namespace :deploy do
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
        invoke 'unicorn:start'
-       excute "service nginx start"
+       execute "service nginx start"
     end
   end
 
