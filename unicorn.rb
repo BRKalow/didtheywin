@@ -1,7 +1,7 @@
 working_directory "/var/www/didtheywin"
 
 pid "/var/www/didtheywin/pids/unicorn.pid"
-old_pid = pid + '.oldbin'
+old_pid pid + '.oldbin'
 
 stderr_path "/var/www/didtheywin/logs/unicorn.log"
 stdout_path "/var/www/didtheywin/logs/unicorn.log"
