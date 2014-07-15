@@ -49,6 +49,7 @@ form.check-form {
   display: inline-block;
   width: 150px;
   text-align: center;
+  float: right;
 }
 .loser {
   opacity: 0.6;
