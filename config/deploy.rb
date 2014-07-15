@@ -14,6 +14,7 @@ set :log_level, :debug
 set :pty, true
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/app.yml}
 
 set :unicorn_config_path, "#{fetch(:deploy_to)}/current/unicorn.rb"
 set :unicorn_pid, "#{fetch(:deploy_to)}/pids/unicorn.pid"
