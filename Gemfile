@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'capistrano', '~> 3.0'
 gem 'capistrano-rvm'
 gem 'capistrano-bundler'
+gem 'capistrano3-unicorn'
 gem 'unicorn'
 
 group :development do

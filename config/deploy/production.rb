@@ -7,3 +7,5 @@
 role :app, %w{bryce@107.170.144.174}
 role :web, %w{bryce@107.170.144.174}
 role :db,  %w{bryce@107.170.144.174}
+
+set :ssh_options, {:forward_agent => true}
