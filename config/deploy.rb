@@ -38,7 +38,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'unicorn:legacy_restart'
+      invoke 'unicorn:restart'
       execute :sudo, "service nginx restart"
     end
   end
