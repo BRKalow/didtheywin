@@ -20,8 +20,11 @@ module DidTheyWin
   end
 
   def self.construct_results_uri(team)
-    uri = self.construct_uri('results', team)
-    return uri
+    uri = self.construct_uri 'results', team
+  end
+
+  def self.construct_boxscore_uri(event)
+    uri = self.construct_uri 'boxscore', event
   end
 
   def self.grab_data(uri)
@@ -44,29 +47,27 @@ module DidTheyWin
       end
     end
 
-    return JSON.parse(data)
+    JSON.parse(data)
   end
 
   def self.team_win?(team, json=false)
-    event = self.grab_data(self.construct_results_uri(team))
+    event = self.grab_data self.construct_results_uri(team)
     result = {}
 
     if event == []
       result[:no_game]                = "It looks like something went wrong."
     else
-      result[:team_name]              = event[0]['team']['full_name']
-      result[:team_id]                = event[0]['team']['team_id']
-      result[:team_name_opponent]     = event[0]['opponent']['full_name']
-      result[:team_id_opponent]       = event[0]['opponent']['team_id']
-      result[:points_scored]          = event[0]['team_points_scored']
-      result[:points_scored_opponent] = event[0]['opponent_points_scored']
-      result[:points_difference]      = (result[:points_scored] - result[:points_scored_opponent]).abs
-      result[:outcome]                = event[0]['team_event_result']
-      result[:date]                   = Time.parse(event[0]['event_start_date_time']).strftime('%B %d, %Y')
+      result = event[0]
+      result[:points_difference]      = (result['team_points_scored'] - result['opponent_points_scored']).abs
+      result[:date]                   = Time.parse(result['event_start_date_time']).strftime('%B %d, %Y')
+
+      boxscore = self.grab_data self.construct_boxscore_uri(event[0]['event_id'])
+      result[:boxscore] = boxscore
     end
 
     if json
-      return result.to_json
+      json_result = result.to_json
+      return json_result
     else
       return result
     end

@@ -42,22 +42,22 @@
         </div>
       </div>
       <div class="col-md-2"></div>
-      <div class="col-md-6 result" ng-show="result && result.hasOwnProperty('team_name' )">
+      <div class="col-md-6 result" ng-show="result && result.hasOwnProperty('team')">
         <span class="date">{{ result.date }}</span>
-        <div class="row team-top" ng-class="{'winner': result.outcome == 'win', 'loser': result.outcome == 'loss'}">
+        <div class="row team-top" ng-class="{'winner': result.team_event_result == 'win', 'loser': result.team_event_result == 'loss'}">
           <div class="col-md-12">
             <div class="logo-wrapper">
-              <img class="logo" ng-if="result && result.hasOwnProperty('team_id')" ng-src="/images/logos/{{ result.team_id }}.gif" alt="{{ result.team_name }}" />
+              <img class="logo" ng-if="result && result.hasOwnProperty('team')" ng-src="/images/logos/{{ result.team.team_id }}.gif" alt="{{ result.team.full_name }}" />
             </div>
-            <span class="points">{{ result.points_scored }}</span>
+            <span class="points">{{ result.team_points_scored }}</span>
           </div>
         </div>
-        <div class="row team-bottom" ng-class="{'loser': result.outcome == 'win', 'winner': result.outcome == 'loss'}">
+        <div class="row team-bottom" ng-class="{'loser': result.team_event_result == 'win', 'winner': result.team_event_result == 'loss'}">
           <div class="col-md-12">
             <div class="logo-wrapper">
-              <img class="logo" ng-if="result && result.hasOwnProperty('team_id_opponent')" ng-src="/images/logos/{{ result.team_id_opponent }}.gif" alt="{{ result.team_name_opponent }}" />
+              <img class="logo" ng-if="result && result.hasOwnProperty('opponent')" ng-src="/images/logos/{{ result.opponent.team_id }}.gif" alt="{{ result.opponent.full_name }}" />
             </div>
-            <span class="points">{{ result.points_scored_opponent }}</span>
+            <span class="points">{{ result.opponent_points_scored }}</span>
           </div>
         </div>
       </div>
