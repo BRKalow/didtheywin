@@ -20,11 +20,11 @@ module DidTheyWin
   end
 
   def self.construct_results_uri(team)
-    uri = self.construct_uri 'results', team
+    uri = self.construct_uri 'results', team, {:limit => 1}
   end
 
   def self.construct_boxscore_uri(event)
-    uri = self.construct_uri 'boxscore', event
+    uri = self.construct_uri 'boxscore', event, {:limit => 1}
   end
 
   def self.grab_data(uri)
@@ -80,30 +80,29 @@ module DidTheyWin
     result = Hash.new
 
     if leader_words.any? { |w| parts.include? w }
-        result[:category] = 'leaders'
-        if request_contains_assist_word? parts
-            result[:method] = 'assists_per_game'
-        end
-        if request_contains_point_word? parts
-            result[:method] = 'points_per_game'
-        end
+      result[:category] = 'leaders'
+      if request_contains_assist_word? parts
+        result[:method] = 'assists_per_game'
+      end
+      if request_contains_point_word? parts
+        result[:method] = 'points_per_game'
+      end
     end
     return result[:category]+'/'+result[:method]+'.json?limit=1'
   end
 
   def self.request_contains_leader_word?(request)
-      words = ['leaders']
-      return words.any? { |w| request.include? w }
+    words = ['leaders']
+    return words.any? { |w| request.include? w }
   end
 
   def self.request_contains_assist_word?(request)
-     words = ['assists', 'assist', 'apg']
-    return words.any? { |w| request.include? w }
+   words = ['assists', 'assist', 'apg']
+   return words.any? { |w| request.include? w }
   end
 
   def self.request_contains_point_word?(request)
     words  = ['points', 'point', 'ppg']
     return words.any? { |w| request.include? w }
   end
-
 end
