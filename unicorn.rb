@@ -12,11 +12,12 @@ timeout 30
 preload_app true
 
 before_exec do |server|
-    ENV['BUNDLE_GEMFILE'] = File.expand_path('./Gemfile', File.dirname(__FILE__))
+    ENV['BUNDLE_GEMFILE'] = File.expand_path('./current/Gemfile', File.dirname(__FILE__))
 end
 
 before_fork do |server, worker|
     old_pid = "#{server.pid}.oldbin"
+    puts old_pid
     if File.exists?(old_pid) && server.pid != old_pid
         begin
             Process.kill("QUIT", File.read(old_pid).to_i)
