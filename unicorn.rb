@@ -16,7 +16,7 @@ before_exec do |server|
 end
 
 before_fork do |server, worker|
-    old_pid = server.pid + '.oldbin'
+    old_pid = "#{server.pid}.oldbin"
     if File.exists?(old_pid) && server.pid != old_pid
         begin
             Process.kill("QUIT", File.read(old_pid).to_i)
