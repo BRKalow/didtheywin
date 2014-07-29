@@ -57,7 +57,7 @@ app.controller('MainCtrl', function($scope, $http) {
   };
 
   $scope.build_player_picture_url = function(player_name) {
-    url_name = player_name.replace(/ /g,"_");
+    url_name = player_name.replace(/ /g,"_").toLowerCase();
     return "http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/" + url_name + ".png";
   };
 });
