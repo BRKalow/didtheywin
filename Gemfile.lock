@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    bond (0.5.1)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
@@ -31,6 +32,14 @@ GEM
       rack (>= 1.0)
     raindrops (0.13.0)
     rake (10.3.2)
+    ripl (0.7.1)
+      bond (~> 0.5.1)
+    ripl-multi_line (0.3.1)
+      ripl (>= 0.3.6)
+    ripl-rack (0.2.1)
+      rack (>= 1.0)
+      rack-test (~> 0.6.2)
+      ripl (>= 0.7.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -59,6 +68,11 @@ GEM
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     tilt (1.4.1)
+    tux (0.3.0)
+      ripl (>= 0.3.5)
+      ripl-multi_line (>= 0.2.4)
+      ripl-rack (>= 0.2.0)
+      sinatra (>= 1.2.1)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -78,4 +92,5 @@ DEPENDENCIES
   simplecov
   sinatra
   thin
+  tux
   unicorn

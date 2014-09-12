@@ -10,6 +10,7 @@ gem 'unicorn'
 group :development do
   gem 'shotgun'
   gem 'thin'
+  gem 'tux'
 end
 
 group :test do

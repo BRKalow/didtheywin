@@ -83,15 +83,11 @@ form.check-form {
   border-width: 1px;
   border-style: solid;
   border-radius: 2px;
-  width: 250px;
-  padding: 6px;
+  width: 225px;
   cursor: pointer;
   z-index: 9999;
   position: absolute;
-  /*top: 32px;
-  left: 0px;
-  */
-  margin-top: -6px;
+  top: 50px;
   background-color: #ffffff;
 }
 .angucomplete-searching {
@@ -102,12 +98,11 @@ form.check-form {
   font-size: 14px;
 }
 .angucomplete-row {
-  padding: 5px;
+  padding: 10px;
   color: #000000;
-  margin-bottom: 4px;
 }
 .angucomplete-selected-row, .angucomplete-row:hover {
-  background-color: lightblue;
+  background-color: #428bca;
   color: #ffffff;
 }
 .angucomplete-image-holder {
