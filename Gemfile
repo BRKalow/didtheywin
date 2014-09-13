@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem 'bundler'
 gem 'sinatra'
 gem 'capistrano', '~> 3.0'
 gem 'capistrano-rvm'
