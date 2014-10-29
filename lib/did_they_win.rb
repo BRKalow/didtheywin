@@ -20,7 +20,7 @@ module DidTheyWin
   end
 
   def self.construct_results_uri(team)
-    uri = self.construct_uri 'results', team, {:limit => 1}
+    uri = self.construct_uri 'results', team, {:until => Time.now.strftime("%Y%m%d"), :limit => 1}
   end
 
   def self.construct_boxscore_uri(event)

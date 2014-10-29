@@ -19,7 +19,8 @@ describe DidTheyWin do
 
   describe "#construct_results_uri" do
     it 'takes in a team name and returns a uri' do
-      DidTheyWin::construct_results_uri('Minnesota Timberwolves').to_s.should eq 'https://erikberg.com/nba/results/minnesota-timberwolves.json?limit=1'
+      time = Time.now.strftime("%Y%m%d")
+      DidTheyWin::construct_results_uri('Minnesota Timberwolves').to_s.should eq "https://erikberg.com/nba/results/minnesota-timberwolves.json?until=#{time}&limit=1"
     end
   end
 

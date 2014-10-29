@@ -4,6 +4,7 @@ SimpleCov.start
 require 'rack/test'
 require 'sinatra'
 require 'net/http'
+require 'time'
 
 set :environment, :test
 
