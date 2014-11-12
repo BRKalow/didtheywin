@@ -47,7 +47,7 @@ form.check-form {
   font-size: 2em;
   padding: 30px 0 20px 0;
   display: inline-block;
-  width: 150px;
+  width: 170px;
   text-align: center;
   float: right;
 }
@@ -59,7 +59,7 @@ form.check-form {
 }
 .date {
   position: absolute;
-  left: 75%;
+  left: 70%;
   top: 42%;
   background: white;
   border-radius: 100px;
