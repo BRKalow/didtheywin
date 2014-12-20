@@ -50,6 +50,9 @@
               <img class="logo" ng-if="result && result.hasOwnProperty('team')" ng-src="/images/logos/{{ result.team.team_id }}.gif" alt="{{ result.team.full_name }}" />
             </div>
             <span class="points">{{ result.team_points_scored }}</span>
+            <span class="boxscore">
+              <span class="score" ng-repeat="score in team_boxscore.period_scores track by $index">{{ score }}</span>
+            </span>
           </div>
         </div>
         <div class="row team-bottom" ng-class="{'loser': result.team_event_result == 'win', 'winner': result.team_event_result == 'loss'}">
@@ -58,6 +61,9 @@
               <img class="logo" ng-if="result && result.hasOwnProperty('opponent')" ng-src="/images/logos/{{ result.opponent.team_id }}.gif" alt="{{ result.opponent.full_name }}" />
             </div>
             <span class="points">{{ result.opponent_points_scored }}</span>
+            <span class="boxscore">
+              <span class="score" ng-repeat="score in opponent_boxscore.period_scores track by $index">{{ score }}</span>
+            </span>
           </div>
         </div>
       </div>

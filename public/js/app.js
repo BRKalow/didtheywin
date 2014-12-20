@@ -53,6 +53,7 @@ app.controller('MainCtrl', function($scope, $http) {
     }).success(function(data, status, headers, config) {
       $scope.result = data;
       $scope.team = '';
+      $scope.setup_boxscore($scope.result.team.team_id);
     });
   };
 
@@ -60,4 +61,18 @@ app.controller('MainCtrl', function($scope, $http) {
     url_name = player_name.replace(/ /g,"_").toLowerCase();
     return "http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/" + url_name + ".png";
   };
+
+  $scope.setup_boxscore = function(team_id) {
+    if ($scope.result.boxscore.away_team.team_id == team_id) {
+      $scope.team_boxscore = $scope.result.boxscore.away_stats;
+      $scope.team_boxscore.period_scores = $scope.result.boxscore.away_period_scores;
+      $scope.opponent_boxscore = $scope.result.boxscore.home_stats;
+      $scope.opponent_boxscore.period_scores = $scope.result.boxscore.home_period_scores;
+    } else {
+      $scope.team_boxscore = $scope.result.boxscore.home_stats;
+      $scope.team_boxscore.period_scores = $scope.result.boxscore.home_period_scores;
+      $scope.opponent_boxscore = $scope.result.boxscore.away_stats;
+      $scope.opponent_boxscore.period_scores = $scope.result.boxscore.away_period_scores;
+    }
+  }
 });
