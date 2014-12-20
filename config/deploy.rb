@@ -18,6 +18,7 @@ set :linked_files, %w{config/app.yml}
 
 set :unicorn_config_path, "#{fetch(:deploy_to)}/current/unicorn.rb"
 set :unicorn_pid, "#{fetch(:deploy_to)}/pids/unicorn.pid"
+set :unicorn_env, fetch(:rails_env)
 
 namespace :deploy do
 
@@ -32,8 +33,8 @@ namespace :deploy do
   desc 'Stop application'
   task :stop do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'unicorn:stop' 
-    end 
+      invoke 'unicorn:stop'
+    end
   end
 
   desc 'Restart application'
