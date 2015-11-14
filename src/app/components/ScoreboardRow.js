@@ -31,8 +31,8 @@ class ScoreboardRow extends React.Component {
    */
   render () {
     return(
-      <div className={`row team-${this.props.position} ${this.getOutcomeClass(this.props.result)}`}>
-        <div className="col-md-12">
+      <div className={`mdl-grid team-${this.props.position} ${this.getOutcomeClass(this.props.result)}`}>
+        <div className="mdl-cell mdl-cell--12-col">
             <TeamLogo team={this.props.team} />
             <span className="points">{this.props.points_scored}</span>
             <span className="boxscore">

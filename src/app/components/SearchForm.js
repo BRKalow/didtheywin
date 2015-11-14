@@ -32,7 +32,7 @@ class SearchForm extends React.Component {
             'New York Knicks',
             'Oklahoma City Thunder',
             'Orlando Magic',
-            'Philadelphia Sixers',
+            'Philadelphia 76ers',
             'Phoenix Suns',
             'Portland Trail Blazers',
             'Sacramento Kings',
@@ -60,6 +60,9 @@ class SearchForm extends React.Component {
 
     executeSearch(e) {
         e.preventDefault();
+        if (this.state.input == '')
+            return;
+
         this.setState({input:''});
         this.props.searchHandler(this.state.input);
     }
@@ -70,21 +73,26 @@ class SearchForm extends React.Component {
     */
     render () {
         return(
-            <div className="row">
-                <div className="col-md-12">
-                  <form name="check" className="form-inline check-form" onSubmit={this.executeSearch.bind(this)}>
+            <div className="mdl-grid">
+                <div className="mdl-cell mdl-cell--12-col">
+                  <form name="check" className="form-inline check-form mdl-card mdl-shadow--2dp" onSubmit={this.executeSearch.bind(this)}>
+                    <div className="mdl-grid">
+                    <div className="mdl-cell mdl-cell--8-col mdl-cell--5-col-tablet mdl-textfield mdl-js-textfield" style={{color:'white'}}>
                        <AutoSuggest
                            ref="autosuggest"
                            value={this.state.input}
                            suggestions={this.getSuggestions.bind(this)}
                            onSuggestionSelected={this.onSuggestionSelected.bind(this)}
                            inputAttributes={{
-                               placeholder: 'Find your team...',
-                               className: 'form-control input-lg',
+                               id: 'team-input',
+                               className: 'mdl-textfield__input',
                                autoFocus: true
                            }}
                        />
-                    <button type="submit" className="btn btn-primary btn-lg">Check</button>
+                       <label className="mdl-textfield__label" htmlFor="team-input">Find your team...</label>
+                    </div>
+                    <button type="submit" className="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Check</button>
+                    </div>
                   </form>
                 </div>
             </div>

@@ -16,13 +16,17 @@ class AppRoot extends React.Component {
   }
 
   searchHandler(identifier) {
-    identifier = identifier.toLowerCase().replace(' ', '-');
+    identifier = identifier.toLowerCase().replace(/\ /g, '-');
     this.setState({loaded: false});
     setTimeout(function() {
       $.getJSON('/results/' + identifier).then(function(data) {
         this.setState({result: data, loaded: true});
       }.bind(this));
     }.bind(this), 1000);
+  }
+
+  componentDidUpdate() {
+    // componentHandler.upgradeDOM();
   }
 
   /*
@@ -40,32 +44,42 @@ class AppRoot extends React.Component {
 
     return(
       <div className="appRoot">
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">
-                {"didtheyw.in?"}
-              </a>
-            </div>
+      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header homepage-container">
+        <header className="mdl-layout__header">
+          <div className="mdl-layout__header-row">
+            <span className="mdl-layout-title">{"didtheyw.in?"}</span>
+            <div className="mdl-layout-spacer"></div>
+            <nav className="mdl-navigation mdl-layout--large-screen-only">
+              <a className="mdl-navigation__link" href="#">Source</a>
+            </nav>
           </div>
-        </nav>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
-              <div className="row">
-                <div className="col-md-12">
-                  <h1 className="title">
-                    Did They Win?<br/>
-                    <small>Missed the game? No problem! Check the result here.</small>
-                  </h1>
+        </header>
+        <div className="mdl-layout__drawer">
+          <span className="mdl-layout-title">{"didtheyw.in?"}</span>
+          <nav className="mdl-navigation">
+            <a className="mdl-navigation__link" href="#">Source</a>
+          </nav>
+        </div>
+        <div className="mdl-layout__content">
+          <div className="page-content">
+            <div className="mdl-grid">
+              <div className="mdl-cell mdl-cell--4-col">
+                <div className="mdl-grid">
+                  <div className="mdl-cell mdl-cell--12-col">
+                    <h1 className="title">
+                      Did They Win?<br/>
+                      <small>Missed the game? No problem! Check the result here.</small>
+                    </h1>
+                  </div>
                 </div>
+                <SearchForm searchHandler={this.searchHandler.bind(this)} />
               </div>
-              <SearchForm searchHandler={this.searchHandler.bind(this)} />
+              <div className="mdl-cell mdl-cell--2-col"></div>
+              {scoreboard}
             </div>
-            <div className="col-md-2"></div>
-            {scoreboard}
           </div>
         </div>
+      </div>
       </div>
     );
   }

@@ -16,8 +16,6 @@ class App {
    */
   constructor(options) {
     debug('create app with options', options);
-
-    this.state = options.state;
   }
 
   /*
@@ -27,12 +25,10 @@ class App {
    */
    render (element) {
 
-    debug('render app with state', this.state);
+    debug('rendering app');
 
     // would be in JSX: <AppRoot state={this.state} />
-    var appRootElement = React.createElement(AppRoot, {
-      state: this.state
-    });
+    var appRootElement = React.createElement(AppRoot);
 
     // render to DOM
     if(element) {

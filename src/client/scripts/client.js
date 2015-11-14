@@ -11,8 +11,6 @@ var app;
 Debug.enable('myApp*');
 
 // Create new app and attach to element
-app = new App({
-  state: state
-});
+app = new App();
 
 app.renderToDOM(attachElement);

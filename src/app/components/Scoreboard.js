@@ -33,22 +33,24 @@ class Scoreboard extends React.Component {
    */
   render () {
     return(
-      <div className="col-md-6 result animated flipInX">
-        <span className="date">{this.getDate()}</span>
-        <ScoreboardRow
-          team={this.props.result.team.team_id}
-          result={this.props.result.team_event_result}
-          position="top"
-          points_scored={this.props.result.team_points_scored}
-          period_scores={this.getPeriodScores(this.props.result.team.team_id)}
-        />
-        <ScoreboardRow
-          team={this.props.result.opponent.team_id}
-          result={this.reverseOutcome(this.props.result.team_event_result)}
-          position="bottom"
-          points_scored={this.props.result.opponent_points_scored}
-          period_scores={this.getPeriodScores(this.props.result.opponent.team_id)}
-        />
+      <div className="mdl-cell mdl-cell--6-col">
+        <div className="result animated flipInX">
+          <span className="date">{this.getDate()}</span>
+          <ScoreboardRow
+            team={this.props.result.team.team_id}
+            result={this.props.result.team_event_result}
+            position="top"
+            points_scored={this.props.result.team_points_scored}
+            period_scores={this.getPeriodScores(this.props.result.team.team_id)}
+          />
+          <ScoreboardRow
+            team={this.props.result.opponent.team_id}
+            result={this.reverseOutcome(this.props.result.team_event_result)}
+            position="bottom"
+            points_scored={this.props.result.opponent_points_scored}
+            period_scores={this.getPeriodScores(this.props.result.opponent.team_id)}
+          />
+        </div>
       </div>
     );
   }
